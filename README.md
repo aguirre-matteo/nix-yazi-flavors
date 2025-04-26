@@ -14,6 +14,11 @@ with Nix for being used along NixOS and Home-Manager.
 - [Licence](#licence)
 
 # Usage
+> [!NOTE]
+> These flavors require Yazi >=0.4.0. Nixpkgs 24.11 has
+> version 0.3.3, so make sure you install Yazi from the
+> unstable branch.
+
 ## Installation
 First, add this repository to the inputs of your flake which
 contains your Home-Manager or NixOS configuration:
