@@ -15,5 +15,6 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out
     cp -r $src/themes/${flavor}.yazi/* $out/
+    touch $out/preview.png
   '';
 }
