@@ -189,7 +189,7 @@ pkgs.yazi-flavors.tokyonight-storm
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-modern.yazi">vscode-dark-modern</a>
+<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-modern.yazi">vscode-dark-modern.yazi</a>
 </summary>
 
 ```nix
@@ -200,7 +200,7 @@ pkgs.vscode-dark-modern
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-plus.yazi">vscode-dark-plus</a>
+<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-plus.yazi">vscode-dark-plus.yazi</a>
 </summary>
 
 ```nix
@@ -211,7 +211,7 @@ pkgs.vscode-dark-plus
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-modern.yazi">vscode-light-modern</a>
+<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-modern.yazi">vscode-light-modern.yazi</a>
 </summary>
 
 ```nix
@@ -222,7 +222,7 @@ pkgs.vscode-light-modern
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-plus.yazi">vscode-light-plus</a>
+<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-plus.yazi">vscode-light-plus.yazi</a>
 </summary>
 
 ```nix
