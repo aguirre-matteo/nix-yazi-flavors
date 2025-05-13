@@ -56,7 +56,59 @@ Nixpkgs' list of overlays:
 
 ```
 ## Configuration
+Now, in your Yazi's config, you can enable all the flavors by doing this:
 
+```nix
+{ pkgs, ... }:
+
+{
+  programs.yazi = {
+    enable = true;
+    flavors = pkgs.yazi-flavors;
+  };
+}
+```
+
+Or if you want to add only some of them, you can do so this way:
+
+
+```nix
+{ pkgs, ... }:
+
+{
+  programs.yazi = {
+    enable = true;
+    flavors = {
+      inherit (pkgs.yazi-flavors)
+        vscode-dark-plus
+        vscode-light-plus
+        ;
+    };
+  };
+}
+```
+
+Now, to set the `theme.flavor` option to make sure Yazi uses your downloaded flavor:
+
+```nix
+
+{
+  programs.yazi = {
+    enable = true;
+    flavors = {
+      inherit (pkgs.yazi-flavors)
+        vscode-dark-plus
+        vscode-light-plus
+        ;
+    };
+
+    theme.flavor = {
+      dark = "vscode-dark-plus";
+      light = "vscode-light-plus";
+    };
+  };
+}
+```
 
 # Flavors
 
