@@ -184,6 +184,16 @@ pkgs.yazi-flavors.kanagawa
 </summary>
 
 ```nix
+pkgs.yazi-flavors.kanagawa-dragon
+
+</details>
+
+<details>
+<summary>
+<a href="https://github.com/marcosvnmelo/kanagawa-dragon.yazi">kanagawa-dragon.yazi</a>
+</summary>
+
+```nix
 pkgs.yazi-flavors.nord
 ```
 
