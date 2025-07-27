@@ -1,0 +1,23 @@
+name: Nix Flake Check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with: 
+          extra-features: "nix-command flakes"
+
+      - name: Check packages
+        run: nix flake check
