@@ -185,7 +185,7 @@ pkgs.yazi-flavors.kanagawa
 
 ```nix
 pkgs.yazi-flavors.kanagawa-dragon
-
+```
 </details>
 
 <details>
