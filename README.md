@@ -45,9 +45,9 @@ Nixpkgs' list of overlays:
       modules = [
         # ...
         {
-          nixpkgs.overlays = {
+          nixpkgs.overlays = [
             inputs.nix-yazi-flavors.overlay # <--- Here you enable the overlay
-          };
+          ];
         }
       ];
     };
