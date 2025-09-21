@@ -13,7 +13,8 @@
     eachSystem = nixpkgs.lib.genAttrs (import systems);
   in {
     packages = eachSystem (system: import ./packages nixpkgs.legacyPackages.${system});
-    checks = eachSystem(system: self.packages.${system});
-    overlay = import ./overlay.nix;
+    checks = eachSystem (system: self.packages.${system});
+    overlays.default = import ./overlay.nix;
+    overlay = import ./overlay.nix; # Deprecated
   };
 }

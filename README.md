@@ -1,7 +1,6 @@
 ![Logo](./logo.png)
 
 # Nix Yazi Flavors
-
 This repository is a collection of Yazi flavors packaged
 with Nix for being used along NixOS and Home-Manager.
 
@@ -14,63 +13,57 @@ with Nix for being used along NixOS and Home-Manager.
 - [Licence](#licence)
 
 # Usage
-> [!NOTE]
-> These flavors require Yazi >=0.4.0. Nixpkgs 24.11 has
-> version 0.3.3, so make sure you install Yazi from the
-> unstable branch.
 
 ## Installation
-First, add this repository to the inputs of your flake which
+The first step is to add this repository to our flake's inputs, which
 contains your Home-Manager or NixOS configuration:
-
 
 ```flake.nix
 {
   inputs = {
-    # ...
-    nix-yazi-flavors.url = "github:aguirre-matteo/nix-yazi-flavors"
+    nix-yazi-flavors.url = "github:aguirre-matteo/nix-yazi-flavors";
   };
 }
 ```
 
-This repository provides a flake with an overlay that make available
-all flavors under `pkgs.yazi-flavors.<name>`. Add that overlay to the
-Nixpkgs' list of overlays:
+Then we have to add this flake's overlay to our config. In most cases
+we would want to add it directly to our NixOS configuration. Make sure
+you made your flake's inputs available through `specialArgs` or 
+`extraSpecialArgs`.
 
 ```flake.nix
-{
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # ...
-      modules = [
-        # ...
-        {
-          nixpkgs.overlays = [
-            inputs.nix-yazi-flavors.overlay # <--- Here you enable the overlay
-          ];
-        }
-      ];
-    };
-  };
-}
+# configuration.nix
+{ inputs, ... }:
 
+{
+  nixpkgs.overlays = [
+    inputs.nix-yazi-flavors.overlays.default
+  ];
+}
 ```
+
+And in case we're using Home-Manager standalone or we don't want to 
+apply it globally, we can enable it the same way, but placing the code 
+in our `home.nix`.
+
 ## Configuration
-Now, in your Yazi's config, you can enable all the flavors by doing this:
+Now it's time to add the flavors to our Yazi's config. We can
+either add all the flavors by doing:
 
 ```nix
+# home.nix
 { pkgs, ... }:
 
 {
   programs.yazi = {
     enable = true;
-    flavors = pkgs.yazi-flavors;
+    flavors = pkgs.yaziFlavors;
   };
 }
 ```
 
-Or if you want to add only some of them, you can do so this way:
-
+Or add only the ones we want by inheriting those packages under
+`programs.yazi.flavors`:
 
 ```nix
 { pkgs, ... }:
@@ -79,16 +72,16 @@ Or if you want to add only some of them, you can do so this way:
   programs.yazi = {
     enable = true;
     flavors = {
-      inherit (pkgs.yazi-flavors)
-        vscode-dark-plus
-        vscode-light-plus
-        ;
+      inherit (pkgs.yaziFlavors)
+      vscode-dark-plus vscode-light-plus;
     };
   };
 }
 ```
 
-Now, to set the `theme.flavor` option to make sure Yazi uses your downloaded flavor:
+Then we must set the `programs.yazi.theme.flavor` option so Yazi
+knows which of those flavors should be used. We can set which one
+to use for dark or light themes:
 
 ```nix
 
@@ -96,10 +89,8 @@ Now, to set the `theme.flavor` option to make sure Yazi uses your downloaded fla
   programs.yazi = {
     enable = true;
     flavors = {
-      inherit (pkgs.yazi-flavors)
-        vscode-dark-plus
-        vscode-light-plus
-        ;
+      inherit (pkgs.yaziFlavors)
+      vscode-dark-plus vscode-light-plus;
     };
 
     theme.flavor = {
@@ -111,6 +102,7 @@ Now, to set the `theme.flavor` option to make sure Yazi uses your downloaded fla
 ```
 
 # Flavors
+Here you can browse all the flavors available in this repository.
 
 <details>
 <summary>
@@ -118,9 +110,10 @@ Now, to set the `theme.flavor` option to make sure Yazi uses your downloaded fla
 </summary>
 
 ```nix
-pkgs.yazi-flavors.catppuccin-frappe
+pkgs.yaziFlavors.catppuccin-frappe
 ```
 
+<img src="https://github.com/yazi-rs/flavors/blob/main/catppuccin-frappe.yazi/preview.png" alt="Catppuccin Frappe">
 </details>
 
 <details>
@@ -129,9 +122,10 @@ pkgs.yazi-flavors.catppuccin-frappe
 </summary>
 
 ```nix
-pkgs.yazi-flavors.catppuccin-latte
+pkgs.yaziFlavors.catppuccin-latte
 ```
 
+<img src="https://github.com/yazi-rs/flavors/blob/main/catppuccin-latte.yazi/preview.png" alt="Catppuccin Latte">
 </details>
 
 <details>
@@ -140,9 +134,10 @@ pkgs.yazi-flavors.catppuccin-latte
 </summary>
 
 ```nix
-pkgs.yazi-flavors.catppuccin-macchaito
+pkgs.yaziFlavors.catppuccin-macchaito
 ```
 
+<img src="https://github.com/yazi-rs/flavors/blob/main/catppuccin-macchiato.yazi/preview.png" alt="Catppuccin Macchiato">
 </details>
 
 <details>
@@ -151,9 +146,10 @@ pkgs.yazi-flavors.catppuccin-macchaito
 </summary>
 
 ```nix
-pkgs.yazi-flavors.catppuccin-mocha
+pkgs.yaziFlavors.catppuccin-mocha
 ```
 
+<img src="https://github.com/yazi-rs/flavors/blob/main/catppuccin-mocha.yazi/preview.png" alt="Catppuccin Mocha">
 </details>
 
 <details>
@@ -162,9 +158,10 @@ pkgs.yazi-flavors.catppuccin-mocha
 </summary>
 
 ```nix
-pkgs.yazi-flavors.dracula
+pkgs.yaziFlavors.dracula
 ```
 
+<img src="https://github.com/yazi-rs/flavors/blob/main/dracula.yazi/preview.png" alt="Dracula">
 </details>
 
 <details>
@@ -173,19 +170,10 @@ pkgs.yazi-flavors.dracula
 </summary>
 
 ```nix
-pkgs.yazi-flavors.kanagawa
+pkgs.yaziFlavors.kanagawa
 ```
 
-</details>
-
-<details>
-<summary>
-<a href="https://github.com/AdithyanA2005/nord.yazi">nord.yazi</a>
-</summary>
-
-```nix
-pkgs.yazi-flavors.kanagawa-dragon
-```
+<img src="https://github.com/dangooddd/kanagawa.yazi/blob/main/preview.png" alt="Kanagawa">
 </details>
 
 <details>
@@ -194,9 +182,22 @@ pkgs.yazi-flavors.kanagawa-dragon
 </summary>
 
 ```nix
-pkgs.yazi-flavors.nord
+pkgs.yaziFlavors.kanagawa-dragon
 ```
 
+<img src="https://github.com/marcosvnmelo/kanagawa-dragon.yazi/blob/main/preview.png" alt="Kanagawa Dragon">
+</details>
+
+<details>
+<summary>
+<a href="https://github.com/AdithyanA2005/nord.yazi">nord.yazi</a>
+</summary>
+
+```nix
+pkgs.yaziFlavors.nord
+```
+
+<img src="https://github.com/AdithyanA2005/nord.yazi/blob/main/preview.png" alt="Nord">
 </details>
 
 <details>
@@ -205,9 +206,10 @@ pkgs.yazi-flavors.nord
 </summary>
 
 ```nix
-pkgs.yazi-flavors.onedark
+pkgs.yaziFlavors.onedark
 ```
 
+<img src="https://github.com/BennyOe/onedark.yazi/blob/main/preview.png" alt="OneDark">
 </details>
 
 <details>
@@ -216,9 +218,10 @@ pkgs.yazi-flavors.onedark
 </summary>
 
 ```nix
-pkgs.yazi-flavors.tokyonight-day
+pkgs.yaziFlavors.tokyonight-day
 ```
 
+<img src="https://github.com/kalidyasin/yazi-flavors/blob/main/tokyonight-day.yazi/preview.png" alt="TokyoNight Day">
 </details>
 
 <details>
@@ -227,9 +230,10 @@ pkgs.yazi-flavors.tokyonight-day
 </summary>
 
 ```nix
-pkgs.yazi-flavors.tokyonight-moon
+pkgs.yaziFlavors.tokyonight-moon
 ```
 
+<img src="https://github.com/kalidyasin/yazi-flavors/blob/main/tokyonight-moon.yazi/preview.png" alt="TokyoNight Moon">
 </details>
 
 <details>
@@ -238,9 +242,10 @@ pkgs.yazi-flavors.tokyonight-moon
 </summary>
 
 ```nix
-pkgs.yazi-flavors.tokyonight-night
+pkgs.yaziFlavors.tokyonight-night
 ```
 
+<img src="https://github.com/kalidyasin/yazi-flavors/blob/main/tokyonight-night.yazi/preview.png" alt="TokyoNight Night">
 </details>
 
 <details>
@@ -249,62 +254,66 @@ pkgs.yazi-flavors.tokyonight-night
 </summary>
 
 ```nix
-pkgs.yazi-flavors.tokyonight-storm
+pkgs.yaziFlavors.tokyonight-storm
 ```
 
+<img src="https://github.com/kalidyasin/yazi-flavors/blob/main/tokyonight-storm.yazi/preview.png" alt="TokyoNight Storm">
 </details>
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-modern.yazi">vscode-dark-modern.yazi</a>
+<a href="https://github.com/956MB/vscode-dark-modern.yazi">vscode-dark-modern.yazi</a>
 </summary>
 
 ```nix
-pkgs.vscode-dark-modern
+pkgs.yaziFlavors.vscode-dark-modern
 ```
 
+<img src="https://github.com/956MB/vscode-dark-modern.yazi/blob/main/preview.png" alt="VSCode Dark Modern">
 </details>
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-dark-plus.yazi">vscode-dark-plus.yazi</a>
+<a href="https://github.com/956MB/vscode-dark-plus.yazi/">vscode-dark-plus.yazi</a>
 </summary>
 
 ```nix
-pkgs.vscode-dark-plus
+pkgs.yaziFlavors.vscode-dark-plus
 ```
 
+<img src="https://github.com/956MB/vscode-dark-plus.yazi/blob/main/preview.png" alt="VSCode Dark Plus">
 </details>
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-modern.yazi">vscode-light-modern.yazi</a>
+<a href="https://github.com/956MB/vscode-light-modern.yazi">vscode-light-modern.yazi</a>
 </summary>
 
 ```nix
-pkgs.vscode-light-modern
+pkgs.yaziFlavors.vscode-light-modern
 ```
 
+<img src="https://github.com/956MB/vscode-light-modern.yazi/blob/main/preview.png" alt="VSCode Light Modern">
 </details>
 
 <details>
 <summary>
-<a href="https://github.com/956MB/vscode.yazi/tree/main/themes/vscode-light-plus.yazi">vscode-light-plus.yazi</a>
+<a href="https://github.com/956MB/vscode-light-plus.yazi">vscode-light-plus.yazi</a>
 </summary>
 
 ```nix
 pkgs.vscode-light-plus
 ```
 
+<img src="https://github.com/956MB/vscode-light-plus.yazi/blob/main/preview.png" alt="VSCode Light Plus">
 </details>
 
 # Contributing
-If you want to contribute to this project, here is a
-list of some of the things you can do:
+If you want to contribute to this project, there are some things you can do:
 
 - Add a new flavor (must also add a section in [Flavors](#flavors)).
 - Maintain or update an existing flavor.
 - Spread this project in forums or recommend it to someone else.
 
 # Licence
-All the code in this repository is distributed under the MIT Licence. See the details [here](./LICENSE).
+All the code in this repository is distributed under the MIT Licence. You can see the details [here](./LICENSE).
