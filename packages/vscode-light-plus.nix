@@ -4,17 +4,16 @@ let
 in 
 pkgs.stdenv.mkDerivation {
   pname = "yazi-flavor-${flavor}";
-  version = "mar-22";
+  version = "jun-11";
   src = fetchFromGitHub {
     owner = "956MB";
-    repo = "vscode.yazi";
-    rev = "63268f169cf821a72c036ab7e0a772a8c4815845";
-    hash = "sha256-rdK11kU792jlxlY1lG4vVmfewS5F3tg8XaV6WIkS4T8=";
+    repo = "${flavor}.yazi";
+    rev = "83c8be6e0d0240c5fec6be5b8b6d907a097a0e0a";
+    hash = "sha256-YhHIYKaA4m0ok7vSMwX1TNLGLN2Z2ACciIbJAm6PmJM=";
   };
 
   installPhase = ''
     mkdir -p $out
-    cp -r $src/themes/${flavor}.yazi/* $out/
-    touch $out/preview.png
+    cp -r $src/* $out/
   '';
 }

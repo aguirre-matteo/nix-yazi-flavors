@@ -4,7 +4,7 @@ let
 in 
 pkgs.stdenv.mkDerivation {
   pname = "yazi-flavor-${flavor}";
-  version = "feb-23";
+  version = "apr-15";
   src = fetchFromGitHub {
     owner = "BennyOe";
     repo = "${flavor}.yazi";
