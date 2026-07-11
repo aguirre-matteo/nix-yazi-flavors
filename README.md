@@ -225,6 +225,42 @@ pkgs.yaziFlavors.onedark
 
 <details>
 <summary>
+<a href="https://github.com/Mintass/rose-pine.yazi">rose-pine.yazi</a>
+</summary>
+
+```nix
+pkgs.yaziFlavors.rose-pine
+```
+
+<img src="https://github.com/Mintass/rose-pine.yazi/blob/main/preview.png" alt="Rose Pine">
+</details>
+
+<details>
+<summary>
+<a href="https://github.com/Mintass/rose-pine-dawn.yazi">rose-pine-dawn.yazi</a>
+</summary>
+
+```nix
+pkgs.yaziFlavors.rose-pine-dawn
+```
+
+<img src="https://github.com/Mintass/rose-pine-dawn.yazi/blob/main/preview.png" alt="Rose Pine Dawn">
+</details>
+
+<details>
+<summary>
+<a href="https://github.com/Mintass/rose-pine-moon.yazi">rose-pine-moon.yazi</a>
+</summary>
+
+```nix
+pkgs.yaziFlavors.rose-pine-moon
+```
+
+<img src="https://github.com/Mintass/rose-pine-moon.yazi/blob/main/preview.png" alt="Rose Pine Moon">
+</details>
+
+<details>
+<summary>
 <a href="https://github.com/kalidyasin/yazi-flavors/tree/main/tokyonight-day.yazi">tokyonight-day.yazi</a>
 </summary>
 
